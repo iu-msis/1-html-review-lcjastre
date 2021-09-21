@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="css/site.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/vue@next"></script>
   </head>
   
   <div class="container">
@@ -37,10 +38,10 @@
           
             <h1 class="info"> Personal Information </h1>
           
-         <div class="hotshot col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-          <a href="img/keith.jpg" target="blank">
-      <img src="img/keith.jpg"></a><p class="text-center"> taken from <a href="https://randomuser.me/">https://randomuser.me/</a></div>
-        <div class="text col-lg-12 col-md-12 col-sm-12 col-xs-12">
+         <!--<div class="hotshot col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"></div>-->
+          <!--<a href="https://randomuser.me/"><img v-bind:src="person.picture.large" alt="Circle Image" class="img-raised-rounded-circle-img-fluid"> </a> taken from <a href="https://randomuser.me/">https://randomuser.me/</a></p></div>-->
+        <div class="text col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"id="someApp">
+          <a href="https://randomuser.me/"><img v-bind:src="result.picture.large" alt="Circle Image" class="img-raised-rounded-circle-img-fluid-center"> <br> </a> taken from <a href="https://randomuser.me/">https://randomuser.me/</a></p>
         <table class="table table-bordered table-striped table-hover table-condensed">
             <!-- Altered this code from getbootstrap.com -->
           <thead>
@@ -53,7 +54,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="text-center">Keith Larson</td>	<td class="text-center">United States of America</td><td class="text-center">04/03/1992</td><td class="text-center">29</td><td class="text-center"><a href="mailto:Keith.Larson@example.com">Keith.Larson@example.com</td>
+            <tr><td class="text-center">{{result.name.first}} {{result.name.last}}</td>	<td class="text-center">{{result.location.country}}</td><td class="text-center">{{prettyBirthday}}</td><td class="text-center">{{result.dob.age}}</td><td class="text-center"><a v-bind:href="'mailto:' + result.email">{{ result.email }}</a></td>
           
           </tbody>
           <tfoot>
@@ -61,17 +62,21 @@
           </tfoot>
         </table>
         </div>
-          
+        <div>
+          <form v-on:submit.prevent="fetchUserData">
+            <button type="submit" class="text-center">Refresh</button>
+          </form>
+        </div>
         
       
         </main>
     
-        <footer class="row">
-         
-          
-         
-          </div>
+        
         </footer>
       </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+        <script src="js/information.js"></script>
+        
       </body>
     </html>
