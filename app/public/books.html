@@ -14,7 +14,7 @@
   <header class="row">
     
    
-    <h1 class="bob text-center" height="230px">Keith Larson</div></h1>
+    <h1 class="bob text-center" height="230px">Books</div></h1>
   </header>
    
     <nav class="nav row navbar navbar-default">
@@ -33,25 +33,37 @@
          </ul>
             <!-- Took the basis of this code from getbootstrap.com -->
     </nav>
-    <main class="row">
-        <h1 class="text-center"> Books</h1>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <table id="taskTable" class="table table-dark table-bordered table-striped table-hover table-condensed">
-          <!-- Altered this code from getbootstrap.com -->
-          <thead>
-            <tr> 
-              <th class="text-center"> Title</th>
-              <th class="text-center">Author(s)</th>
-              <th class="text-center"> Year Published</th>
-              <th class="text-center"> Publisher</th>
-              <th class="text-center"> Page Count</th>
-              <th class="text-center"> MSRP</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="text-center">
+    <div  id="offerApp" class="container">
+
+    
+
+  
+      <table id='task' class="table" v-if="books.length">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Year Published</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Page Count</th>
+            <th scope="col">MSRP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="book in books">
+            <td>{{ book.Title }}</td>
+            <td>{{ book.Author }}</td>
+            <td>{{ book.Year_Published }}</td>
+            <td>{{book.Publisher}}</td>
+            <td>{{book.Page_Count }}</td>
+            <td>{{book.MSRP}}</td>   
+          </tr>
+      </tbody>
+      </table>
+    
+               
            
-              <td><i>Harry Potter and The Half-Blood Prince</i></td>
+              <!-- <td><i>Harry Potter and The Half-Blood Prince</i></td>
               <td>JK Rowling</td>
               <td>2005</td>
               <td>Pottermore Publishing</td>
@@ -93,11 +105,40 @@
               <td>Viking Press</td>
               <td>1,138</td>
               <td>$23.99</td>
-            </tr>
+            </tr><--> 
             
-          </tbody>
-        </table>
-        <h2 class="bt"> Add a book to the table</h2>
+          <!-- </tbody> -->
+        <!-- </table> -->
+        <form v-on:submit.prevent="postNewBook">
+          <div class="mb-3">
+            <label for="Title" class="form-label">Title</label>
+            <input type="text" v-model="offerForm.Title"
+             class="form-control" id="Title">
+          </div>
+          <div class="mb-3">
+            <label for="Author" class="form-label">Author</label>
+            <input type="text" v-model="offerForm.Author" class="form-control" id="Author">
+          </div>
+          <div class="mb-3">
+            <label for="year_published" class="form-label">Year Published</label>
+            <input type="number" v-model="offerForm.Year_Published" class="form-control" id="Year_Published">
+          </div>
+          <div class="mb-3">
+            <label for="Publisher" class="form-label">Publisher</label>
+            <input type="text" v-model="offerForm.Publisher" class="form-control" id="Publisher">
+          </div>
+          <div class="mb-3">
+            <label for="Pages" class="form-label">Pages</label>
+            <input type="number" v-model="offerForm.Page_Count" class="form-control" id="Page_Count">
+          </div>
+          <div class="mb-3">
+            <label for="MRRP" class="form-label">MSRP</label>
+            <input type="float" v-model="offerForm.MSRP" class="form-control" id="MSRP">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+        <!-- <h2 class="bt"> Add a book to the table</h2>
         <form action=""method="post">
           <label for="title">Title: </label><input type="text" name="title" id="title">
           <br>
@@ -122,7 +163,7 @@
           <form action=""method="post">
           <label for="MSRP">MSRP: </label><input type="text" name="MSRP" id="MSRP">
           <br>
-          <input class="button" type="submit" name="order" id="order" value="Submit">
+          <input class="button" type="submit" name="order" id="order" value="Submit"> -->
   
       </main>
   
@@ -131,12 +172,13 @@
        
         
       </footer>
-            <script src="script.js"></script>
+           
     </div>
     <script src="js/tablesort.min.js"></script>
+    <script src="js/index.js"></script>
     <script>
       // Tablesort plugin from http://tristen.ca/tablesort/demo/
-      new Tablesort(document.getElementById('taskTable'));
+      // new Tablesort(document.getElementById('taskTable'));
     </script>
     </body>
   </html>
